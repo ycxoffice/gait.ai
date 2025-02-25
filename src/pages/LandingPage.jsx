@@ -12,6 +12,7 @@ import {
   ChevronRight,
   Share2,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const DirectoryLanding = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -34,12 +35,12 @@ const DirectoryLanding = () => {
               </span>
             </div>
             <div className="hidden md:flex space-x-8">
-              <a
-                href="#"
+              <Link
+                to={'CompanyList'}
                 className="text-gray-300 hover:text-red-500 transition-colors"
               >
                 Companies
-              </a>
+              </Link>
               <a
                 href="#"
                 className="text-gray-300 hover:text-red-500 transition-colors"

@@ -36,29 +36,11 @@ const DirectoryLanding = () => {
             </div>
             <div className="hidden md:flex space-x-8">
               <Link
-                to={'CompanyList'}
+                to={"CompanyList"}
                 className="text-gray-300 hover:text-red-500 transition-colors"
               >
                 Companies
               </Link>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-red-500 transition-colors"
-              >
-                Analytics
-              </a>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-red-500 transition-colors"
-              >
-                Research
-              </a>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-red-500 transition-colors"
-              >
-                Trends
-              </a>
             </div>
           </div>
         </div>
@@ -82,20 +64,6 @@ const DirectoryLanding = () => {
                 Sports & Fitness AI
               </span>
             </h1>
-
-            {/* Search Box */}
-            <div className="max-w-3xl mx-auto mt-12">
-              <div className="relative">
-                <Search className="absolute left-4 top-4 h-6 w-6 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search sports tech companies, AI features, or markets..."
-                  className="w-full pl-14 pr-4 py-4 rounded-2xl bg-gray-900 border border-gray-800 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 text-white"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-              </div>
-            </div>
           </div>
         </div>
       </div>

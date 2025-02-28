@@ -1,3 +1,4 @@
+//gait companyList
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -63,11 +64,11 @@ function CompanyList() {
     fetchData();
   }, []);
 
-    const [isVisible, setIsVisible] = useState(false);
-  
-    useEffect(() => {
-      setIsVisible(true);
-    }, []);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
   // Get unique exchanges and sectors for filters
   const exchanges = [
     ...new Set(companies.map((company) => company["Exchange"] || "")),
@@ -116,47 +117,47 @@ function CompanyList() {
   return (
     <div className="min-h-screen bg-black text-white bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-black to-black">
       {/* Header */}
-          <nav className="fixed w-full bg-black/90 backdrop-blur-md z-50 border-b border-gray-800">
-            <div className="container mx-auto px-6 py-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Activity className="h-8 w-8 text-red-500" />
-                  <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-orange-500">
-                    Gait.ai
-                  </span>
-                </div>
-                <div className="hidden md:flex space-x-8">
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:text-red-500 transition-colors"
-                  >
-                    Companies
-                  </a>
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:text-red-500 transition-colors"
-                  >
-                    Analytics
-                  </a>
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:text-red-500 transition-colors"
-                  >
-                    Research
-                  </a>
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:text-red-500 transition-colors"
-                  >
-                    Trends
-                  </a>
-                </div>
-              </div>
+      <nav className="fixed w-full bg-black/90 backdrop-blur-md z-50 border-b border-gray-800">
+        <div className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Activity className="h-8 w-8 text-red-500" />
+              <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-orange-500">
+                Gait.ai
+              </span>
             </div>
-          </nav>
+            <div className="hidden md:flex space-x-8">
+              <a
+                href="#"
+                className="text-gray-300 hover:text-red-500 transition-colors"
+              >
+                Companies
+              </a>
+              <a
+                href="#"
+                className="text-gray-300 hover:text-red-500 transition-colors"
+              >
+                Analytics
+              </a>
+              <a
+                href="#"
+                className="text-gray-300 hover:text-red-500 transition-colors"
+              >
+                Research
+              </a>
+              <a
+                href="#"
+                className="text-gray-300 hover:text-red-500 transition-colors"
+              >
+                Trends
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
 
       {/* Hero Section with Gradient */}
-     
+
       <div className="pt-32 pb-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-orange-500/10" />
         <div className="container mx-auto px-6 relative">
@@ -348,7 +349,10 @@ function CompanyList() {
                           className="text-sm text-blue-400 hover:text-blue-300 transition-colors truncate"
                           onClick={(e) => e.stopPropagation()}
                         >
-                          {company[" Website URL"]?.replace(/^https?:\/\/(www\.)?/, "") || "N/A"}
+                          {company[" Website URL"]?.replace(
+                            /^https?:\/\/(www\.)?/,
+                            ""
+                          ) || "N/A"}
                         </a>
                       </div>
                     </div>

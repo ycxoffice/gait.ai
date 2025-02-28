@@ -1,3 +1,4 @@
+//gait companydata
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
@@ -54,7 +55,6 @@ function CompanyData() {
     fetchData();
   }, [companyName]);
 
-  
   if (loading)
     return (
       <div className="flex justify-center items-center h-screen bg-black">
@@ -114,8 +114,8 @@ function CompanyData() {
 
   if (!company) return null;
 
-   // New attribute groups
-   const generalInfo = [
+  // New attribute groups
+  const generalInfo = [
     "Industry",
     "Primary Offering",
     "Target Audience",
@@ -134,10 +134,7 @@ function CompanyData() {
     "Key Founders and Linkedin profiles",
     "Research and Patents",
   ];
-  const connectInfo = [
-    "Social Media Presence",
-    "Competitors",
-  ];
+  const connectInfo = ["Social Media Presence", "Competitors"];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-gray-100">
@@ -279,7 +276,6 @@ function CompanyData() {
                   )}
                 </div>
               </div>
-
               {/* Corporate Information */}
               <div className="bg-gray-800/40 p-6 rounded-2xl border border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/50 transition-colors duration-300">
                 <h2 className="text-xl font-semibold text-white mb-5 flex items-center">
@@ -320,7 +316,6 @@ function CompanyData() {
                   )}
                 </div>
               </div>
-
               {/* People & Research */}
               <div className="bg-gray-800/40 p-6 rounded-2xl border border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/50 transition-colors duration-300">
                 <h2 className="text-xl font-semibold text-white mb-5 flex items-center">
@@ -352,46 +347,27 @@ function CompanyData() {
                           </span>
                           <span className="text-white">
                             {key === "Key Founders and Linkedin profiles" &&
-                            company[key].includes("LinkedIn:")
-                              ? (
-                                <div
-                                  dangerouslySetInnerHTML={{
-                                    __html: company[key].replace(
-                                      /(https:\/\/www\.linkedin\.com\/[^\s,]+)/g,
-                                      '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-orange-400 hover:text-orange-300 transition-colors hover:underline">LinkedIn Profile</a>'
-                                    ),
-                                  }}
-                                />
-                              )
-                              : (
-                                company[key]
-                              )}
+                            company[key].includes("LinkedIn:") ? (
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html: company[key].replace(
+                                    /(https:\/\/www\.linkedin\.com\/[^\s,]+)/g,
+                                    '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-orange-400 hover:text-orange-300 transition-colors hover:underline">LinkedIn Profile</a>'
+                                  ),
+                                }}
+                              />
+                            ) : (
+                              company[key]
+                            )}
                           </span>
                         </div>
                       )
                   )}
                 </div>
               </div>
-
               {/* Connect */}
-              <div className="bg-gray-800/40 p-6 rounded-2xl border border-gray-700/50 backdrop-blur-sm hover:bg-gray-800/50 transition-colors duration-300">
-                <h2 className="text-xl font-semibold text-white mb-5 flex items-center">
-                  <div className="bg-gray-700/50 p-1.5 rounded-lg mr-3">
-                    <svg
-                      className="w-5 h-5 text-orange-400"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
-                      ></path>
-                    </svg>
-                  </div>
+              <div className="bg-gray-800/40 p-6 rounded-2xl border border-gray-700/50">
+                <h2 className="text-xl font-semibold text-white mb-5">
                   Connect
                 </h2>
                 <div className="space-y-5">
@@ -399,11 +375,26 @@ function CompanyData() {
                     (key) =>
                       company[key] && (
                         <div key={key} className="flex flex-col">
-                          <span className="text-gray-400 text-sm font-medium mb-2">
+                          <span className="text-orange-400/80 text-sm font-medium mb-2">
                             {key}
                           </span>
                           <span className="text-white font-medium text-lg">
-                            {company[key]}
+                            {key === "Social Media Presence" ? (
+                              company[key].startsWith("http") ? (
+                                <a
+                                  href={company[key]}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-orange-400 hover:text-orange-300 underline transition-colors"
+                                >
+                                  {company[key]}
+                                </a>
+                              ) : (
+                                company[key]
+                              )
+                            ) : (
+                              company[key]
+                            )}
                           </span>
                         </div>
                       )

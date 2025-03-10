@@ -69,13 +69,6 @@ function CompanyList() {
   useEffect(() => {
     setIsVisible(true);
   }, []);
-  // Get unique exchanges and sectors for filters
-  const exchanges = [
-    ...new Set(companies.map((company) => company["Exchange"] || "")),
-  ].filter(Boolean);
-  const sectors = [
-    ...new Set(companies.map((company) => company["Sector"] || "")),
-  ].filter(Boolean);
 
   // Filter companies based on search term and filters
   const filteredCompanies = companies.filter((company) => {
@@ -86,12 +79,7 @@ function CompanyList() {
       company["Industry"]?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       company["Headquarters"]?.toLowerCase().includes(searchTerm.toLowerCase());
 
-    const matchesExchange =
-      selectedExchange === "" || company["Exchange"] === selectedExchange;
-    const matchesSector =
-      selectedSector === "" || company["Sector"] === selectedSector;
-
-    return matchesSearch && matchesExchange && matchesSector;
+    return matchesSearch;
   });
 
   if (loading)
@@ -125,32 +113,6 @@ function CompanyList() {
               <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-orange-500">
                 Gait.ai
               </span>
-            </div>
-            <div className="hidden md:flex space-x-8">
-              <a
-                href="#"
-                className="text-gray-300 hover:text-red-500 transition-colors"
-              >
-                Companies
-              </a>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-red-500 transition-colors"
-              >
-                Analytics
-              </a>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-red-500 transition-colors"
-              >
-                Research
-              </a>
-              <a
-                href="#"
-                className="text-gray-300 hover:text-red-500 transition-colors"
-              >
-                Trends
-              </a>
             </div>
           </div>
         </div>
@@ -391,143 +353,6 @@ function CompanyList() {
             ))}
           </div>
         )}
-      </div>
-
-      {/* Features Section */}
-      <div className="py-20 mt-12 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/api/placeholder/1000/1000')] opacity-5 bg-fixed"></div>
-        <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500 rounded-full filter blur-[150px] opacity-10"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-[150px] opacity-5"></div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center bg-orange-500/10 border border-orange-500/20 px-3 py-1 rounded-full text-orange-400 text-xs font-medium mb-4">
-              <BarChart2 className="h-3 w-3 mr-1" />
-              AI-Powered Analysis
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
-              Small Cap, Big Data
-            </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Our proprietary algorithms analyze thousands of data points to
-              identify high-potential small cap companies before they hit the
-              mainstream.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 backdrop-blur-sm relative group hover:border-orange-500/50 transition-all">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500 rounded-full filter blur-[80px] opacity-10 group-hover:opacity-20 transition-opacity"></div>
-
-              <div className="bg-gray-700 p-3 rounded-lg inline-flex mb-6 group-hover:bg-orange-500 group-hover:text-black transition-colors">
-                <List className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-4 group-hover:text-orange-400 transition-colors">
-                Market Analytics
-              </h3>
-              <p className="text-gray-400">
-                Real-time valuation tracking and market performance metrics to
-                keep you informed of every market movement.
-              </p>
-              <div className="mt-6 pt-6 border-t border-gray-700">
-                <a
-                  href="#"
-                  className="text-sm text-orange-400 hover:text-orange-300 flex items-center"
-                >
-                  Learn more
-                  <svg
-                    className="ml-1 w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 backdrop-blur-sm relative group hover:border-orange-500/50 transition-all">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500 rounded-full filter blur-[80px] opacity-10 group-hover:opacity-20 transition-opacity"></div>
-
-              <div className="bg-gray-700 p-3 rounded-lg inline-flex mb-6 group-hover:bg-orange-500 group-hover:text-black transition-colors">
-                <TrendingUp className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-4 group-hover:text-orange-400 transition-colors">
-                Growth Scoring
-              </h3>
-              <p className="text-gray-400">
-                Proprietary AI-driven growth potential scoring system that
-                predicts future market performance with remarkable accuracy.
-              </p>
-              <div className="mt-6 pt-6 border-t border-gray-700">
-                <a
-                  href="#"
-                  className="text-sm text-orange-400 hover:text-orange-300 flex items-center"
-                >
-                  Learn more
-                  <svg
-                    className="ml-1 w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 backdrop-blur-sm relative group hover:border-orange-500/50 transition-all">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500 rounded-full filter blur-[80px] opacity-10 group-hover:opacity-20 transition-opacity"></div>
-
-              <div className="bg-gray-700 p-3 rounded-lg inline-flex mb-6 group-hover:bg-orange-500 group-hover:text-black transition-colors">
-                <AlertTriangle className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-4 group-hover:text-orange-400 transition-colors">
-                Risk Assessment
-              </h3>
-              <p className="text-gray-400">
-                Comprehensive risk level evaluation and volatility metrics to
-                help you make informed investment decisions.
-              </p>
-              <div className="mt-6 pt-6 border-t border-gray-700">
-                <a
-                  href="#"
-                  className="text-sm text-orange-400 hover:text-orange-300 flex items-center"
-                >
-                  Learn more
-                  <svg
-                    className="ml-1 w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

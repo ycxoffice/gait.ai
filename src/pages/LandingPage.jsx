@@ -34,14 +34,6 @@ const DirectoryLanding = () => {
                 Gait.ai
               </span>
             </div>
-            <div className="hidden md:flex space-x-8">
-              <Link
-                to={"CompanyList"}
-                className="text-gray-300 hover:text-red-500 transition-colors"
-              >
-                Companies
-              </Link>
-            </div>
           </div>
         </div>
       </nav>
@@ -64,6 +56,16 @@ const DirectoryLanding = () => {
                 Sports & Fitness AI
               </span>
             </h1>
+          </div>
+
+          {/* Explore Company Database Button */}
+          <div className="flex justify-center mt-8">
+            <Link to="/CompanyList">
+              <button className="group px-8 py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-xl hover:from-red-400 hover:to-orange-400 transition-all duration-300 flex items-center space-x-2 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50">
+                <span>Explore Company Database</span>
+                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </Link>
           </div>
         </div>
       </div>
